@@ -7,13 +7,15 @@
         <meta name="viewport" content="width=device-width">
 
         <!-- syntax highlighting CSS -->
-        <link rel="stylesheet" href="/css/syntax.css">
+        <link rel="stylesheet" href="/css/syntax.css"> 
 
         <!-- Custom CSS -->
         <link rel="stylesheet" href="/css/main.css">
 
+        <script src="/pbinit.js"></script>
+        <script src="/pingback.js"></script>
     </head>
-    <body>
+    <body onload="doSomething();">
 
         <div class="container">
           <div class="site">
@@ -30,21 +32,23 @@
                 <ul id="pinboard_linkroll"><li>Fetching linkroll&#8230;</li></ul>
                 <p><a href="http://pinboard.in/u:bcomnes">My Pinboard Bookmarks &raquo;</a></p>
               </div>
-              <script type="text/javascript">
-                var linkroll = 'pinboard_linkroll'; //id target for pinboard list
-                var pinboard_user = "bcomnes"; //id target for pinboard list
-                var pinboard_count = 5; //id target for pinboard list
-                (function(){
-                  var pinboardInit = document.createElement('script');
-                  pinboardInit.type = 'text/javascript';
-                  pinboardInit.async = true;
-                  pinboardInit.src = '/pinboard.js';
-                  document.getElementsByTagName('head')[0].appendChild(pinboardInit);
-                })();
-              </script>
             </div>
+            
+            
+            
+            <div class="footer">
+                <div id="pingback">
+                    <ul class="pingback_count" id="post1">
+                        <li>Fetching pingbacks&#8230;</li>
+                    </ul>
+                </div>
+                <div id="pingback">
+                     <ul class="pingback_count" id="post2">
+                         <li>Fetching pingbacks&#8230;</li>
+                     </ul>
+                 </div>
+              </div>
 
         </div> <!-- /container -->
-
     </body>
 </html>
