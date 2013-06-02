@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Test ~ pingback-js</title>
+</head>
+
+<body>
+<section class="span4" id="pinboard">
+  <h1>Bookmarks</h1>
+  <ul id="pinboard_linkroll"><li>Fetching linkroll&#8230;</li></ul>
+  <p><a href="http://pinboard.in/u:bcomnes">My Pinboard Bookmarks &raquo;</a></p>
+</section>
+<script type="text/javascript">
+  var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+  var pinboard_user = "bcomnes"; //id target for pinboard list
+  var pinboard_count = 5; //id target for pinboard list
+  (function(){
+    var pinboardInit = document.createElement('script');
+    pinboardInit.type = 'text/javascript';
+    pinboardInit.async = true;
+    pinboardInit.src = '/pinboard.js';
+    document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+  })();
+</script>
+</body>
+</html>
