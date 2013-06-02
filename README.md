@@ -4,7 +4,7 @@ Pingback.js
 
 ## Goals
 
-Pingback.js will processes static elements on your pages and turn them into:
+Pingback.js will process static elements on your pages and turn them into:
 
 *   The number of webmentions or pingbacks for a particular page.
 *   A `<ul>` of URLs that have sent webmentions or pingback to a particular page.
