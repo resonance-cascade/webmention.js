@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>{{ page.title }}</title>
+        <meta name="viewport" content="width=device-width">
+
+        <!-- syntax highlighting CSS -->
+        <link rel="stylesheet" href="/css/syntax.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="/css/main.css">
+
+    </head>
+    <body>
+
+        <div class="container">
+          <div class="site">
+            <div class="header">
+              <h1 class="title"><a href="/">{{ site.name }}</a></h1>
+              <a class="extra" href="/">home</a>
+            </div>
+     
+                {{ content }}
+
+            <div class="footer">
+              <div class="bookmarks" id="pinboard">
+                <h1>Bookmarks</h1>
+                <ul id="pinboard_linkroll"><li>Fetching linkroll&#8230;</li></ul>
+                <p><a href="http://pinboard.in/u:bcomnes">My Pinboard Bookmarks &raquo;</a></p>
+              </div>
+              <script type="text/javascript">
+                var linkroll = 'pinboard_linkroll'; //id target for pinboard list
+                var pinboard_user = "bcomnes"; //id target for pinboard list
+                var pinboard_count = 5; //id target for pinboard list
+                (function(){
+                  var pinboardInit = document.createElement('script');
+                  pinboardInit.type = 'text/javascript';
+                  pinboardInit.async = true;
+                  pinboardInit.src = '/pinboard.js';
+                  document.getElementsByTagName('head')[0].appendChild(pinboardInit);
+                })();
+              </script>
+            </div>
+
+        </div> <!-- /container -->
+
+    </body>
+</html>
