@@ -1,15 +1,15 @@
-pingback-js
+Pingback.js
 ===============
+[Pingback.me](http://Pingback.me) makes it easy to recive incoming pingbacks and webmentions on your webpage or blog.  Pingback.js helps you display them on your gh-pages or statically hosted website. 
 
-A simple script used to parse documents looking for some specific class names of `<ul>` elements and replacing the `<li>` elements within with interesting information parsed from public pingback.me data.
-    
+## Goals
 
-## Initial Goals
-
-pingback.js will fetch two types of data:
+Pingback.js will processes static elements on your pages and turn them into:
 
 *   The number of webmentions or pingbacks for a particular page.
-*   An `<ul>` of URLs that have sent webmentions or pingback.
+*   A `<ul>` of URLs that have sent webmentions or pingback to a particular page.
+
+Generate the desired static element using your templating engine with the correct `id` attribute and relevant `class` attribute, and Pingback.js should do the rest.
     
 ## Project Status
 
