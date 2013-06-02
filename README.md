@@ -7,7 +7,7 @@ Pingback.js
 Pingback.js will process static elements on your pages and turn them into:
 
 *   The number of webmentions or pingbacks recived for a url.
-*   A `<ul>` of URLs that have sent webmentions or pingback to a particular url.
+*   An `<ul>` of URLs that have sent webmentions or pingback to a particular url.
 
 Generate the desired static element using your templating engine with the correct `id` attribute and relevant `class` attribute, and Pingback.js should do the rest.
     
