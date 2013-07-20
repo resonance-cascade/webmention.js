@@ -25,4 +25,4 @@ I am prototyping everything in the [pingback](https://github.com/bcomnes/bcomnes
 ## Live Examples of this in action:
 
 - http://bret.io/2013/06/24/t4/
-- http://bret.io/2013/06/28/indiewebcamp-2013-roundup/
+- http://bret.io/2013/06/28/indiewebcamp-2013-roundup/ (All the way at the bottom!)
