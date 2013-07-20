@@ -2,6 +2,8 @@ Pingback.js
 ===============
 [Pingback.me](http://Pingback.me) makes it easy to recive incoming pingbacks and webmentions on your webpage or blog.  Pingback.js helps you display them on your gh-pages or statically hosted website. 
 
+## This project will undergo a namechange soon to reflect the emphasis on [webmentions](http://indiewebcamp.com/webmention) over pingbacks.
+
 ## Goals
 
 My initial goals for Pingback.js include its ability to process static elements on your pages and turn them into:
