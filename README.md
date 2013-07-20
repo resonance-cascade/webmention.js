@@ -20,3 +20,9 @@ Generate the desired static element using your templating engine with the correc
 In development.  Most of the initial work will consist of conceptual tests to come up with an initial design.  Nothing is working as of yet.
 
 I am prototyping everything in the [pingback](https://github.com/bcomnes/bcomnes.github.io/tree/pingback) branch of my personal site, and will port that work back to this repository when it is working.
+
+
+## Live Examples of this in action:
+
+- http://bret.io/2013/06/24/t4/
+- http://bret.io/2013/06/28/indiewebcamp-2013-roundup/
