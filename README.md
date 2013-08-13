@@ -1,28 +1,66 @@
-Pingback.js
+webmention.js
 ===============
-[Pingback.me](http://Pingback.me) makes it easy to recive incoming pingbacks and webmentions on your webpage or blog.  Pingback.js helps you display them on your gh-pages or statically hosted website. 
-
-## This project will undergo a namechange soon to reflect the emphasis on [webmentions](http://indiewebcamp.com/webmention) over pingbacks.
-
-## Goals
-
-My initial goals for Pingback.js include its ability to process static elements on your pages and turn them into:
-
-*   The number of webmentions or pingbacks recived for a url.
-*   An `<ul>` of URLs that have sent webmentions or pingback to a particular url.
-
-using data collected on the pingback.me servers.
-
-Generate the desired static element using your templating engine with the correct `id` attribute and relevant `class` attribute, and Pingback.js should do the rest.
-    
-## Project Status
-
-In development.  Most of the initial work will consist of conceptual tests to come up with an initial design.  Nothing is working as of yet.
-
-I am prototyping everything in the [pingback](https://github.com/bcomnes/bcomnes.github.io/tree/pingback) branch of my personal site, and will port that work back to this repository when it is working.
-
+[Webmention.io](http://webmention.io) makes it easy to receive incoming webmentions and webmentions on your website or blog.  webmention.js helps you display them on your gh-pages or statically hosted website. 
 
 ## Live Examples of this in action:
 
 - http://bret.io/2013/06/24/t4/
 - http://bret.io/2013/06/28/indiewebcamp-2013-roundup/ (All the way at the bottom!)
+- http://bret.io/pages/inbox/
+
+## How it works
+
+Webmention.js is a set of functions that identify elements on the page with special `id` and `class` properties to generate a request to the [webmention.io jsonp api]().
+
+### Step one
+
+Load the webmention.js code with your page:
+
+```html
+<script src="/js/webmention.js"></script>
+```
+
+### Step two
+
+Add an unordered list to your page.  Add the URL of the page you wish to retrieve data about to the `id` and identify that this list should be processed by `webmention.js` and what data it should display.
+
+#### An example in jekyll:
+
+To display a list of links you would include something like this:
+
+```html
+<ul class="webmentions links" id="http://{{ site.url }}{{ page.url }}">
+	<li>No webmentions were found.</li>
+</ul>
+```
+
+Note: The list of links expects a single placeholder list item.
+
+To display the total count of webmentions/pingbacks received you would include something like this:
+
+```html
+<ul class="webmentions count inline" id="http://{{ site.url }}{{ page.url }}">
+	<li><i class="icon-comment"></i></li>
+	<li>0</li>
+</ul>
+```
+
+Note: The mention count expects an icon as the first element (or anything you want), with a second placeholder element which is removed upon processing.  
+
+##### Caveats 
+
+JSONP has no support for error handling, so if a page has no mentions pointing to it, the webmention.io api will return a 404 and the callback script will not be fired for the calling element.  This means the default display on our target elements must be as if there is no mention of the page.
+
+This will be addressed when the script is updated to use [CORS]().
+
+### Step three
+
+Make sure you API data is publicly accessible.  Right now you have to request this.
+
+
+### Credits
+
+Thanks for all the help in IRC (#indiewebcamp on freenode!) and to @aaronpk for creating the webmention.io/pingback.me service.  
+
+Think you have a better use for this projects namespace?  Go ahead an use it!  This was primarily an experiment and educational experience for my own benefit.  I would love to get feedback on all the things I did wrong or could do better.
+

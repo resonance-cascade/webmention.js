@@ -1,65 +1,76 @@
 // Global webmention.js object
 var webMention = {};
-webMention.realHead = document.head;
-console.log('Webmention.js initialized');
-// webMention.get function for finding objects to interact with.
-webMention.get = function(type) {
-	console.log('get function just fired');
-	// Get a list of all elements with the class of webmention and type
-	webMention.elements = document.getElementsByClassName('webmentions ' + type);
-	console.log('Elements were found');
-	console.log(webMention.elements);
-	// Process each element found
-	webMention.preProcess();
+webMention.get = function() {
+    webMention.elements = document.getElementsByClassName('webmentions');
+    if ( webMention.elements ) {
+        webMention.preProcess();
+    }
 }
-// window.onload = pingback('mode', 'webmentions');
 
 webMention.preProcess = function() {
-	console.log('Preprocess was triggered');
-	for (var i=0; i < webMention.elements.length; i++) {
-		// For a given element, retrieve the URL from its ID and store it
-		webMention.elements[i].slug = webMention.elements[i].id;
-		console.log('Slugs were ammended');
-		console.log(webMention.elements[i].slug);
-		// For a given element, create the uniqe 
-		webMention.elements[i].postProcess = function(data) {
-			console.log('We are attempting to create our object functions');
-			this.parent = document.getElementById(this.slug);
-			this.placeHolder = this.parent.firstElementChild;
-			this.parent.removeChild(this.placeHolder);
-			this.mentions = data;
-			var that = this;
-			console.log(that);
-			console.log(that.mentions);
-			console.log(that.mentions.links.length);
-			for (var j=0; j < this.mentions.links.length; j++) {
-				var listItem = document.createElement('LI');
-				var linkText = document.createTextNode(this.mentions.links[j].source);
-				var linkAnchor = document.createElement('A');
-				linkAnchor.href = this.mentions.links[j].source;
-				linkAnchor.appendChild(linkText);
-				listItem.appendChild(linkAnchor);
-				this.parent.appendChild(listItem);
-			}
-		}
-		webMention.insertScript(i);
-	}
+    for (var i = 0; i < webMention.elements.length; i++) {
+        webMention.elements[i].slug = webMention.elements[i].id;
+        webMention.elements[i].postProcess = webMention.postProcess;
+        webMention.insertScript(i);
+    }
 }
 
-
-
-webMention.insertScript = function (i) {
-	// Create functon attached to element object 
-    var jsonpName = "webMention.elements[" + i + "].postProcess"
-    // Generate the API request URL 
-    var apiUrl = "http://pingback.me/api/links?target="+ webMention.elements[i].slug + "&jsonp=" + jsonpName
-    // Generate the script element to be inserted
+webMention.insertScript = function(i) {
+    var jsonpName = "webMention.elements[" + i + "].postProcess";
+    var apiUrl = "http://pingback.me/api/links?target=" + webMention.elements[i].slug + "&jsonp=" + jsonpName;
     var container = document.createElement('SCRIPT');
-    // Set the source of the script container
     container.src = apiUrl;
-    document.head.appendChild(container)
-    console.log('SCripts have been inserted maybe');
+    document.head.appendChild(container);
 }
 
+webMention.postProcess = function(data) {
+            this.parent = document.getElementById(this.slug);
+            if ( webMention.hasClass(this.parent, 'count') ) {
+                this.placeHolder = this.parent.firstElementChild.nextElementSibling;
+                this.parent.removeChild(this.placeHolder);
+                webMention.showCount(this.parent, data);
+            }
+            if ( webMention.hasClass(this.parent, 'links') ) {
+                this.placeHolder = this.parent.firstElementChild;
+                this.parent.removeChild(this.placeHolder);
+                webMention.listLinks(this.parent, data);
+            }
+        }
 
-webMention.get('links');
+webMention.listLinks = function(parentElement, apiData) {
+    for (var j = 0; j < apiData.links.length; j++) {
+                var listItem = document.createElement('LI');
+                var linkText = document.createTextNode(apiData.links[j].source + " on " + apiData.links[j].verified_date );
+                var linkAnchor = document.createElement('A');
+                linkAnchor.href = apiData.links[j].source;
+                linkAnchor.appendChild(linkText);
+                listItem.appendChild(linkAnchor);
+                parentElement.appendChild(listItem);
+            }
+        }
+webMention.showCount = function(parentElement, apiData) {
+    var listItem = document.createElement('LI');
+    var linkText = document.createTextNode(apiData.links.length);
+    listItem.appendChild(linkText);
+    parentElement.appendChild(listItem);
+}
+
+webMention.listAll = function() {
+    for (var j = 0; j < apiData.links.length; j++) {
+        
+    }
+    
+}
+
+// Bastardization of http://jsfiddle.net/cR9dB/2/ TODO: Unserstand this code :/
+// I think it came out of or was inspired by jquery
+webMention.hasClass = function (element, selector) {
+    var className = ' ' + selector + ' ';
+    var rclass = /[\t\r\n\f]/g;
+
+    return element.nodeType === 1 && (' ' + element.className + ' ')
+    .replace(rclass, ' ')
+    .indexOf(className) >= 0;      
+    }
+
+webMention.get();
