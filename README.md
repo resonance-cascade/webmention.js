@@ -1,3 +1,5 @@
+This currently needs some work!  Please see https://webmention.herokuapp.com/ for a better JS based webmetion display system.
+
 webmention.js
 ===============
 [Webmention.io](http://webmention.io) makes it easy to receive incoming webmentions and pingbacks on your website or blog.  webmention.js helps you display them on your gh-pages or statically hosted website. 
