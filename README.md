@@ -1,4 +1,4 @@
-This currently needs some work!  Please see https://webmention.herokuapp.com/ for a better JS based webmetion display system.
+This currently needs some work!  Please see https://webmention.herokuapp.com/ for a better clientside JS based webmetion display system.
 
 webmention.js
 ===============
